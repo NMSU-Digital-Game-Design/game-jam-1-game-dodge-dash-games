@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlkk8anpv3sxy"]
+
+[ext_resource type="Script" uid="uid://bra3q52eg5krs" path="res://scripts/ArenaRoot.gd" id="1_rg8eu"]
+[ext_resource type="Script" uid="uid://c2olni3vk5ga8" path="res://scenes/arena/Player.gd" id="2_tnwgg"]
+
+[node name="ArenaRoot" type="Node2D"]
+script = ExtResource("1_rg8eu")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("2_tnwgg")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]

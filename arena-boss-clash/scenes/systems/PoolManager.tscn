@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvsecfc87g1r3"]
+
+[ext_resource type="Script" uid="uid://di3aat6it5mgt" path="res://scripts/PoolManager.gd" id="1_lsss4"]
+
+[node name="PoolManager" type="Node2D"]
+script = ExtResource("1_lsss4")
