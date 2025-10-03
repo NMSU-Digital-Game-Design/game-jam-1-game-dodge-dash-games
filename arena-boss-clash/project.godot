@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Arena Boss Clash"
-run/main_scene="uid://bfdnuks3jx4yp"
-config/features=PackedStringArray("4.4", "Forward Plus")
+run/main_scene="uid://dlkk8anpv3sxy"
+config/features=PackedStringArray("4.5", "Forward Plus")
 
 [autoload]
 
