@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=4 uid="uid://dlkk8anpv3sxy"]
+[gd_scene load_steps=5 format=4 uid="uid://dlkk8anpv3sxy"]
 
+[ext_resource type="Texture2D" uid="uid://h2m4w3r84vq7" path="res://assets/FreeTileset/png/BG/BG.png" id="1_olrfp"]
 [ext_resource type="Script" uid="uid://pt5n3gb6d38v" path="res://test/camera.gd" id="1_tnwgg"]
 [ext_resource type="TileSet" uid="uid://daxi5bch5af6" path="res://assets/PlatformerTileSetAnish1.tres" id="2_olrfp"]
 
@@ -7,7 +8,15 @@
 
 [node name="ArenaRoot" type="Node2D"]
 
+[node name="Background" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+position = Vector2(355.00003, -256.49997)
+scale = Vector2(1.538, 1.6146667)
+texture = ExtResource("1_olrfp")
+
 [node name="MainCam" type="Camera2D" parent="."]
+limit_enabled = false
 script = ExtResource("1_tnwgg")
 
 [node name="Map" type="TileMapLayer" parent="."]
