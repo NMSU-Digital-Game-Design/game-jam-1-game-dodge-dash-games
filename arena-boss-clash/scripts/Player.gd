@@ -3,9 +3,11 @@ extends CharacterBody2D
 @export var is_active: bool = true  # For testing disablement
 @export var jump_buffer_time: float = 0.05  # Grace period in seconds for jump input
 var input_suffix: String = "_p" + str(player_id + 1)
-var speed: float = 300.0
+var speed: float = 200.0
 var jump_velocity: float = -400.0
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")  # Default: 980
+
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready():
 	add_to_group("player")
@@ -17,6 +19,8 @@ func _ready():
 		set_process(false)
 		set_physics_process(false)
 		$GroundCollision.disabled = true
+	else:
+		animated_sprite.play("idle")  # Start with idle animation
 
 func _physics_process(delta):
 	if not is_active:
@@ -46,3 +50,38 @@ func _physics_process(delta):
 		collision_mask = 14  # Collide with ground, platforms, hazards
 	
 	move_and_slide()
+	
+	# Snap position to pixel grid to reduce jitter
+	position = position.round()
+	
+	# Animation handling
+	update_animations(direction)
+
+func update_animations(direction: float):
+	if not is_active:
+		return
+	
+	# Flip sprite based on direction
+	if direction != 0:
+		animated_sprite.flip_h = direction < 0
+	
+	# Play animations based on state
+	if not is_on_floor():
+		animated_sprite.play("jump")
+	elif direction != 0:
+		animated_sprite.play("walk")
+	else:
+		animated_sprite.play("idle")
+	
+	# Placeholder for future attack/damage animations
+	# if Input.is_action_just_pressed("attack" + input_suffix):
+	#     if not is_on_floor():
+	#         animated_sprite.play("jump_attack")
+	#     elif /* sword input */:
+	#         animated_sprite.play("sword_attack")
+	#     else:
+	#         animated_sprite.play("bow_attack")
+	# if /* damaged condition */:
+	#     animated_sprite.play("damaged")
+	# if /* death condition */:
+	#     animated_sprite.play("death")
