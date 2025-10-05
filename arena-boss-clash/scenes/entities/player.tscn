@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://c2olni3vk5ga8" path="res://scripts/Player.gd" id="1_ucweq"]
 [ext_resource type="Texture2D" uid="uid://btoduikp4ece3" path="res://assets/sprites/Entities/Soldier.png" id="2_08t41"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tnwgg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08t41"]
+size = Vector2(12, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_08t41"]
 atlas = ExtResource("2_08t41")
@@ -350,17 +351,19 @@ script = ExtResource("1_ucweq")
 
 [node name="GroundCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
-shape = SubResource("CircleShape2D_tnwgg")
+shape = SubResource("RectangleShape2D_08t41")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fanr8")
 animation = &"walk"
-frame_progress = 0.64415044
+frame_progress = 0.7647513
 
 [node name="PlayerCam" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 position_smoothing_speed = 8.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+drag_left_margin = 0.4
+drag_right_margin = 0.4
 
 [node name="JumpBufferTimer" type="Timer" parent="."]
