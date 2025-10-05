@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dlkk8anpv3sxy"]
+[gd_scene load_steps=13 format=4 uid="uid://dlkk8anpv3sxy"]
 
 [ext_resource type="Texture2D" uid="uid://dob0xdevuyqlx" path="res://assets/sprites/Background/BG1.png" id="1_ru6hl"]
 [ext_resource type="Script" uid="uid://pt5n3gb6d38v" path="res://test/camera.gd" id="1_tnwgg"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c42tysst5m08o" path="res://assets/sprites/Background/BG2.png" id="2_t6j7h"]
 [ext_resource type="Texture2D" uid="uid://0xni021dwfkc" path="res://assets/TileSet/Tileset.png" id="2_tnwgg"]
 [ext_resource type="Texture2D" uid="uid://dsxystldwyahj" path="res://assets/sprites/Background/BG3.png" id="3_30qao"]
+[ext_resource type="PackedScene" uid="uid://cvsecfc87g1r3" path="res://scenes/systems/PoolManager.tscn" id="7_fjfs8"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_olrfp"]
 tile_data = PackedInt32Array(0, 0, 0, 65536, 65536, 1, 1, 65536, 0, 65537, 65536, 1, 2, 0, 0, 65538, 65536, 1, 3, 65536, 0, 65539, 65536, 1, 4, 65536, 0, 65540, 65536, 1)
@@ -192,3 +193,5 @@ script = ExtResource("1_tnwgg")
 
 [node name="Player" parent="Players" instance=ExtResource("2_olrfp")]
 position = Vector2(25, 0)
+
+[node name="Projectiles" parent="." instance=ExtResource("7_fjfs8")]

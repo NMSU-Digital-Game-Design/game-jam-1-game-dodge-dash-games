@@ -356,7 +356,7 @@ shape = SubResource("RectangleShape2D_08t41")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fanr8")
 animation = &"walk"
-frame_progress = 0.7647513
+frame_progress = 0.59357554
 
 [node name="PlayerCam" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
