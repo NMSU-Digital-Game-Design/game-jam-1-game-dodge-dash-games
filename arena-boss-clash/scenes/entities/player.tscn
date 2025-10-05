@@ -208,7 +208,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_b6tgf")
 }],
-"loop": true,
+"loop": false,
 "name": &"bow_attack",
 "speed": 5.0
 }, {
@@ -225,7 +225,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_saib0")
 }],
-"loop": true,
+"loop": false,
 "name": &"damaged",
 "speed": 5.0
 }, {
@@ -242,7 +242,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_b4o2o")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -288,7 +288,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6gvyl")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump_attack",
 "speed": 5.0
 }, {
@@ -311,7 +311,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pdlmq")
 }],
-"loop": true,
+"loop": false,
 "name": &"sword_attack",
 "speed": 5.0
 }, {
@@ -355,8 +355,7 @@ shape = SubResource("RectangleShape2D_08t41")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fanr8")
-animation = &"walk"
-frame_progress = 0.59357554
+animation = &"bow_attack"
 
 [node name="PlayerCam" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
