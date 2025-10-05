@@ -1,0 +1,3 @@
+Layer 1: Player hitbox
+Layer 2: Ground Collision
+Layer 3: platform Collision

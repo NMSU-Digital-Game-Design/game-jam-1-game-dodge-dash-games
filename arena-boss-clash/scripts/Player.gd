@@ -1,59 +1,48 @@
-# scripts/Player.gd
 extends CharacterBody2D
-
-var speed: float = 300
-var jump_velocity: float = -400
-var dash_cooldown: float = 2.0
-var damage: float = 1.0
-var health: float = 100
-var projectile_type: String = "normal"
-var bullet_scene = preload("res://scenes/entities/BaseBullet.tscn")
-var pool = null
+@export var player_id: int = 0
+@export var is_active: bool = true  # For testing disablement
+@export var jump_buffer_time: float = 0.05  # Grace period in seconds for jump input
+var input_suffix: String = "_p" + str(player_id + 1)
+var speed: float = 300.0
+var jump_velocity: float = -400.0
+var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")  # Default: 980
 
 func _ready():
 	add_to_group("player")
-	pool = get_node("/root/ArenaRoot/Projectiles/PoolManager")
+	collision_layer = 1  # Player on layer 1
+	collision_mask = 14  # Collide with ground (layer 2), platforms (layer 3), hazards (layer 4)
+	$JumpBufferTimer.wait_time = jump_buffer_time
+	if not is_active:
+		visible = false
+		set_process(false)
+		set_physics_process(false)
+		$GroundCollision.disabled = true
 
 func _physics_process(delta):
-	# Movement
-	var direction = Input.get_axis("ui_left", "ui_right")
+	if not is_active:
+		return
+	
+	# Apply gravity when not on floor
+	if not is_on_floor():
+		velocity.y += gravity * delta
+	
+	# Horizontal movement
+	var direction = Input.get_axis("ui_left" + input_suffix, "ui_right" + input_suffix)
 	velocity.x = direction * speed
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	
+	# Jump input buffering
+	if Input.is_action_just_pressed("ui_up" + input_suffix):
+		$JumpBufferTimer.start()
+	
+	# Jump execution (buffer or hold)
+	if is_on_floor() and (not $JumpBufferTimer.is_stopped() or Input.is_action_pressed("ui_up" + input_suffix)):
 		velocity.y = jump_velocity
-	move_and_slide()
+		$JumpBufferTimer.stop()  # Clear buffer after jumping
 	
-	# Dash
-	if Input.is_action_just_pressed("dash") and $DashTimer.time_left == 0:
-		velocity.x *= 3
-		$DashTimer.start(dash_cooldown)
-	
-	# Shoot
-	if Input.is_action_just_pressed("attack"):
-		shoot()
-
-func shoot():
-	var props = {
-		"collision_layer": 1,
-		"collision_mask": 2,
-		"sprite_texture": preload("res://assets/sprites/player_bullet.png"),
-		"speed": 300,
-		"damage": damage
-	}
-	if projectile_type == "homing":
-		props["homing_target"] = get_closest_enemy()
-		pool.get_projectile(preload("res://scenes/entities/HomingBullet.tscn"), global_position, Vector2.RIGHT * props.speed, props)
+	# Platform pass-through
+	if Input.is_action_pressed("ui_down" + input_suffix):
+		collision_mask = 10  # Only collide with ground (layer 2) and hazards (layer 4)
 	else:
-		pool.get_projectile(bullet_scene, global_position, Vector2.RIGHT * props.speed, props)
-
-func apply_upgrade(upgrade):
-	match upgrade.effect:
-		"damage": damage += upgrade.value
-		"health": health += upgrade.value
-		"homing": projectile_type = "homing"
-		"dash_cooldown": dash_cooldown += upgrade.value
-
-func _on_area_entered(area):
-	if area.is_in_group("enemy_projectile"):
-		health -= area.damage
-		if health <= 0:
-			get_tree().change_scene_to_file("res://scenes/ui/LoseScreen.tscn")
+		collision_mask = 14  # Collide with ground, platforms, hazards
+	
+	move_and_slide()
