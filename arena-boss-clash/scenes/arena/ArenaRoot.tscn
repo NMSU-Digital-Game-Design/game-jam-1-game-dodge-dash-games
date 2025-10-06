@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=4 uid="uid://dlkk8anpv3sxy"]
+[gd_scene load_steps=14 format=4 uid="uid://dlkk8anpv3sxy"]
 
+[ext_resource type="Script" uid="uid://bra3q52eg5krs" path="res://scripts/ArenaRoot.gd" id="1_rhrb7"]
 [ext_resource type="Texture2D" uid="uid://dob0xdevuyqlx" path="res://assets/sprites/Background/BG1.png" id="1_ru6hl"]
 [ext_resource type="Script" uid="uid://pt5n3gb6d38v" path="res://test/camera.gd" id="1_tnwgg"]
 [ext_resource type="PackedScene" uid="uid://bl2aypmolt7pg" path="res://scenes/entities/player.tscn" id="2_olrfp"]
@@ -125,6 +126,7 @@ sources/0 = SubResource("TileSetAtlasSource_30qao")
 pattern_0 = SubResource("TileMapPattern_olrfp")
 
 [node name="ArenaRoot" type="Node2D"]
+script = ExtResource("1_rhrb7")
 
 [node name="BackGroundFills" type="CanvasLayer" parent="."]
 layer = -1

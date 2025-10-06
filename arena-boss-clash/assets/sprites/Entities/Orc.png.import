@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddlikn1i0ihxg"
-path="res://.godot/imported/Soldier_Shadow.png-f42c8ce720c2012e22441dd683060dc7.ctex"
+uid="uid://7nx1vqcy3lqb"
+path="res://.godot/imported/Orc.png-cdc3e71f8709dd3ddbb4ab1e3c9ac8c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Entities/Soldier_Shadow.png"
-dest_files=["res://.godot/imported/Soldier_Shadow.png-f42c8ce720c2012e22441dd683060dc7.ctex"]
+source_file="res://assets/sprites/Entities/Orc.png"
+dest_files=["res://.godot/imported/Orc.png-cdc3e71f8709dd3ddbb4ab1e3c9ac8c3.ctex"]
 
 [params]
 
